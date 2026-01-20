@@ -1,0 +1,32 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Page</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+  </head>
+  <body>
+
+    <h1>Login</h1>
+
+    <br/>
+    <ul>
+      <li><a href="index">Home</a></li>
+      <li><a href="about">About Us</a></li>
+      <li><a href="contact">Contact Us</a></li>
+      <li><a href="register">Register</a></li>
+      <li><a href="login">Login</a></li>
+    </ul>
+
+    <br/>
+    <form action="loginProc">
+      <input type="email" name="email" placeholder="Email" />
+      <input type="password" name="pwd" placeholder="Password" />
+      <input type="submit" value="Log in" />
+    </form>
+  
+  </body>
+</html>

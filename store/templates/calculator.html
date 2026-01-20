@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Page</title>
+  </head>
+  <body>
+
+    <form action="/store/calculate">
+      <input type="text" name="a" />
+      <input type="text" name="b" />
+
+      <input type="submit" name="add" value="Add">
+      <input type="submit" name="sub" value="Subtract">
+      <input type="submit" name="mul" value="Multiply">
+      <input type="submit" name="div" value="Divide">
+    </form>
+
+    <h4>Result:</h4>
+    {{ res }}
+  
+  </body>
+</html>

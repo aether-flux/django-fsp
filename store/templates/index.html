@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Page</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+  </head>
+  <body>
+
+    <h1>Welcome, {{request.session.aec.name}}</h1>
+    <h4>Hello, world!</h4>
+
+    {% if request.session.aec %}
+    <a href="logout">Logout</a>
+    {% endif %}
+
+    <br/>
+    <ul>
+      <li><a href="index">Home</a></li>
+      <li><a href="about">About Us</a></li>
+      <li><a href="contact">Contact Us</a></li>
+      <li><a href="register">Register</a></li>
+      <li><a href="login">Login</a></li>
+    </ul>
+
+    <!-- <br/> -->
+    <!-- <img src="{% static 'plant.jpeg' %}" alt="plant image"> -->
+  
+  </body>
+</html>

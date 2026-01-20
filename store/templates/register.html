@@ -1,0 +1,42 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Page</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+  </head>
+  <body>
+
+    <h1>Register</h1>
+
+    <br/>
+    <ul>
+      <li><a href="index">Home</a></li>
+      <li><a href="about">About Us</a></li>
+      <li><a href="contact">Contact Us</a></li>
+      <li><a href="register">Register</a></li>
+      <li><a href="login">Login</a></li>
+    </ul>
+
+    <br />
+    <form action="registerUser">
+      <input type="text" name="firstname" placeholder="First name" />
+      <input type="text" name="lastname" placeholder="Last name" />
+      <input type="text" name="address" placeholder="Address" />
+      <input type="text" name="pincode" placeholder="Pincode" />
+      <input type="text" name="city" placeholder="City" />
+      <input type="text" name="state" placeholder="State" />
+      <input type="text" name="fathername" placeholder="Father's name" />
+      <input type="text" name="mothername" placeholder="Mother's name" />
+      <input type="text" name="phno" placeholder="Phone number" />
+      <input type="email" name="email" placeholder="Email address" />
+      <input type="text" name="aadhar" placeholder="Aadhar number" />
+      <input type="text" name="age" placeholder="Age" />
+      <input type="submit" value="Register" />
+    </form>
+  
+  </body>
+</html>

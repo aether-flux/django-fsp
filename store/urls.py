@@ -1,0 +1,32 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    # path('err', views.err),
+    path('test', views.test),
+    path('test2', views.test2),
+    path('index', views.index),
+    path('about', views.about),
+    path('contact', views.contact),
+    path('register', views.register),
+    path('login', views.login),
+    path('add', views.add),
+    path('sum', views.sum),
+    path('evenodd', views.evenodd),
+    path('evencheck', views.evencheck),
+    path('fibo', views.fibo),
+    path('fiboCalc', views.fiboCalc),
+    path('calculator', views.calculator),
+    path('calculate', views.calculate),
+    path('userInsert', views.userInsertPage),
+    path('ins', views.ins),
+    path('registerUser', views.registerUser),
+    path('show', views.show),
+    path('del/<int:id>', views.dele),
+    path('edit/<int:id>', views.edit),
+    path('upd/<int:id>', views.upd),
+    path('loginProc', views.loginProc),
+    path('logout', views.logout),
+    path('fileupload', views.fileupload),
+    path('upload', views.upload),
+]

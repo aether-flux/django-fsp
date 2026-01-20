@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Page</title>
+  </head>
+  <body>
+
+    <form action="/store/evencheck">
+      <input type="text" name="n" />
+      <input type="submit" />
+    </form>
+
+    <h4>Is the number even?</h4>
+    <p>{{ res }}</p>
+  
+  </body>
+</html>
