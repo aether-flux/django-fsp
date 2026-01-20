@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -13,6 +15,13 @@
       <input type="file" name="a2" />
       <input type="submit" value="Upload" />
     </form>
+
+    {% if img %}
+    <h3>{{img.fname}}</h3>
+    <img src="{% static '' %}{{img.furl}}" style="width: 200px;" />
+    {% elif err %}
+    <h3>Invalid file type</h3>
+    {% endif %}
   
   </body>
 </html>

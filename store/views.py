@@ -200,10 +200,18 @@ def handle_upload(file, filename):
             destination.write(chunk)
 
 def upload(request):
-    handle_upload(request.FILES['a2'], str(request.FILES['a2']))
+    filename = str(request.FILES['a2'])
+    allowed = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'heic', 'tiff', 'pdf']
+    if filename.split('.')[-1] not in allowed:
+        return render(request, 'upload.html', { 'err': True })
+    handle_upload(request.FILES['a2'], filename)
     url = "upload/" + str(request.FILES['a2'])
     u = picfile()
     u.fname = request.POST['a1']
     u.furl = url
     u.save()
-    return redirect('/store/fileupload')
+    return render(request, 'upload.html', { 'img': u })
+
+def showimgs(request):
+    imgs = picfile.objects.all()
+    return render(request, 'showimgs.html', { 'imgs': imgs })

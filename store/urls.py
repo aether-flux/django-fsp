@@ -29,4 +29,5 @@ urlpatterns = [
     path('logout', views.logout),
     path('fileupload', views.fileupload),
     path('upload', views.upload),
+    path('showimgs', views.showimgs),
 ]
