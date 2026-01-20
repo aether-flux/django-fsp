@@ -19,6 +19,8 @@
       <tr>
         <td>{{i.fname}}</td>
         <td><img src="{{baseUrl}}/{{i.furl}}" style="width: 200px;" /></td>
+        <!-- <td><a href="download/{{i.id}}" download="{{i.fname}}.{{i.fext}}">Download</a></td> -->
+        <td><a href="{{baseUrl}}/{{i.furl}}" download="{{i.fname}}.{{i.fext}}">Download</a></td>
       </tr>
       {% endfor %}
     </table>

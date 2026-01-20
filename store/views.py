@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render
-from django.http import HttpResponse
+from django.http import FileResponse, Http404, HttpResponse
+from django.conf import settings
 from .models import *
 import os
 
@@ -202,16 +203,44 @@ def handle_upload(file, filename):
 def upload(request):
     filename = str(request.FILES['a2'])
     allowed = ['jpg', 'jpeg', 'png', 'webp', 'gif', 'heic', 'tiff', 'pdf']
-    if filename.split('.')[-1] not in allowed:
+    ext = filename.split('.')[-1]
+    if ext not in allowed:
         return render(request, 'upload.html', { 'err': True })
     handle_upload(request.FILES['a2'], filename)
     url = "upload/" + str(request.FILES['a2'])
     u = picfile()
     u.fname = request.POST['a1']
     u.furl = url
+    u.fext = ext
     u.save()
     return render(request, 'upload.html', { 'img': u })
 
 def showimgs(request):
     imgs = picfile.objects.all()
     return render(request, 'showimgs.html', { 'imgs': imgs })
+
+def download(request, id):
+    f = picfile.objects.get(id=id)
+    # filepath = os.path.join('store/static/', f.furl.url)
+    # print(filepath)
+    # if os.path.exists(filepath):
+    #     print("file exists")
+    #     with open(filepath, 'rb') as file:
+    #         print("file opened")
+    #         response = HttpResponse(file.read(), content_type="application/octet-stream")
+    #         print("response created")
+    #         response['Content-Disposition'] = "inline; filename=" + f.fname + "." + f.fext
+    #         print("response header edited")
+    #         return response
+    # raise Http404
+
+    # filepath = os.path.join(f.furl.url)
+    filepath = settings.STATIC_ROOT
+    print(filepath)
+
+    if not os.path.exists(filepath):
+        raise Http404
+
+    response = FileResponse(open(filepath, 'rb'), as_attachment=True)
+    response['Content-Disposition'] = (f'attachment; filename="{f.fname}/{f.fext}"')
+    return response

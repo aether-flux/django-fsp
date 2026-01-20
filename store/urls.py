@@ -30,4 +30,5 @@ urlpatterns = [
     path('fileupload', views.fileupload),
     path('upload', views.upload),
     path('showimgs', views.showimgs),
+    path('download/<int:id>', views.download),
 ]

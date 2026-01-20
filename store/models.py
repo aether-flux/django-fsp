@@ -29,6 +29,10 @@ class student(models.Model):
 class picfile(models.Model):
     fname = models.CharField(max_length=50)
     furl = models.ImageField()
+    fext = models.CharField(max_length=15)
+
+    # @property
+    # def image_url()
 
     class Meta:
         db_table = "picfile"
