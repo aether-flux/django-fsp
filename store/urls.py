@@ -31,4 +31,5 @@ urlpatterns = [
     path('upload', views.upload),
     path('showimgs', views.showimgs),
     path('download/<int:id>', views.download),
+    path('weather', views.weather_view),
 ]

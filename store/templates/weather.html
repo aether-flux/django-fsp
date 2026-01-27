@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Weather</title>
+  </head>
+  <body>
+
+    <form>
+      <input type="text" name="city" placeholder="City" />
+      <input type="submit" value="See weather" />
+    </form>
+
+    <br />
+    <h1>{{city}} [{{country}}]</h1>
+    <h3>{{temperature}}</h3>
+    <h4>Feels like: {{feels_like}}</h4>
+    <p>Min: {{mint}}</p>
+    <p>Max: {{maxt}}</p>
+
+    <h2>{{main}}</h2>
+    <p>{{description.capitalize}}</p>
+
+    <h3>Wind speed</h3>
+    <p>{{windspeed}}</p>
+
+    <h3>Humidity</h3>
+    <p>{{humidity}}</p>
+
+    <h3>Visibility</h3>
+    <p>{{visibility}}</p>
+
+    <h3>Clouds</h3>
+    {% for k, v in clouds.items %}
+    <span>{{k.capitalize}}: {{v}}</span>
+    {% endfor %}
+
+    <h3>Coordinates</h3>
+    <span>Latitude: {{coord.lat}}</span>
+    <span>Longitude: {{coord.lon}}</span>
+  
+  </body>
+</html>

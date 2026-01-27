@@ -1,0 +1,27 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+ul {
+  width: auto;
+  height: 100px;
+}
+
+ul li {
+  width: 150px;
+  height: 40px;
+  background-color: beige;
+  float: left;
+  margin-right: 30px;
+  list-style: none;
+  text-align: center;
+  padding-top: 10px;
+  border-radius: 5px;
+}
+
+ul a {
+  text-decoration: none;
+  color: black;
+}

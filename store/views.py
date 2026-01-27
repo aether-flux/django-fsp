@@ -1,3 +1,4 @@
+import requests
 from django.shortcuts import redirect, render
 from django.http import FileResponse, Http404, HttpResponse
 from django.conf import settings
@@ -221,26 +222,38 @@ def showimgs(request):
 
 def download(request, id):
     f = picfile.objects.get(id=id)
-    # filepath = os.path.join('store/static/', f.furl.url)
-    # print(filepath)
-    # if os.path.exists(filepath):
-    #     print("file exists")
-    #     with open(filepath, 'rb') as file:
-    #         print("file opened")
-    #         response = HttpResponse(file.read(), content_type="application/octet-stream")
-    #         print("response created")
-    #         response['Content-Disposition'] = "inline; filename=" + f.fname + "." + f.fext
-    #         print("response header edited")
-    #         return response
-    # raise Http404
+    # filepath = os.path.join(str(settings.STATIC_ROOT), f.furl.url)
+    filepath = str(settings.STATIC_ROOT) + f.furl.url
+    if os.path.exists(filepath):
+        with open(filepath, 'rb') as file:
+            response = HttpResponse(file.read(), content_type="application/octet-stream")
+            response['Content-Disposition'] = "inline; filename=" + f.fname + "." + f.fext
+            return response
+    raise Http404
 
-    # filepath = os.path.join(f.furl.url)
-    filepath = settings.STATIC_ROOT
-    print(filepath)
+def weather_view(request):
+    city = request.GET.get('city', 'Delhi')
+    api_key = "40c8c5aaafd25bc0c9afa33872d2d40a"
 
-    if not os.path.exists(filepath):
-        raise Http404
+    url = f"https://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
+    response = requests.get(url)
+    data = response.json()
+    weather_data = {
+        'city': data['name'],
+        'country': data['sys']['country'],
+        'temperature': data['main']['temp'],
+        'main': data['weather'][0]['main'],
+        'description': data['weather'][0]['description'],
+        'windspeed': data['wind']['speed'],
+        'humidity': data['main']['humidity'],
+        'visibility': data['visibility'],
+        'clouds': data['clouds'],
+        'coord': data['coord'],
+        'feels_like': data['main']['feels_like'],
+        'mint': data['main']['temp_min'],
+        'maxt': data['main']['temp_max'],
+        'sea_level': data['main']['sea_level'],
+        'grnd_level': data['main']['grnd_level'],
+    }
 
-    response = FileResponse(open(filepath, 'rb'), as_attachment=True)
-    response['Content-Disposition'] = (f'attachment; filename="{f.fname}/{f.fext}"')
-    return response
+    return render(request, 'weather.html', weather_data)
