@@ -9,6 +9,9 @@ class user(models.Model):
     class Meta:
         db_table = "user"
 
+    def __str__(self):
+        return self.name
+
 class student(models.Model):
     firstname = models.CharField(max_length=50)
     lastname = models.CharField(max_length=50)
@@ -26,6 +29,9 @@ class student(models.Model):
     class Meta:
         db_table = "student"
 
+    def __str__(self):
+        return self.firstname
+
 class picfile(models.Model):
     fname = models.CharField(max_length=50)
     furl = models.ImageField()
@@ -36,3 +42,6 @@ class picfile(models.Model):
 
     class Meta:
         db_table = "picfile"
+
+    def __str__(self):
+        return self.fname
