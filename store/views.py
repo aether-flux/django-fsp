@@ -4,6 +4,9 @@ from django.http import FileResponse, Http404, HttpResponse
 from django.conf import settings
 from .models import *
 import os
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from .serializers import *
 
 def test(request):
     return HttpResponse('testing the page')
@@ -257,3 +260,18 @@ def weather_view(request):
     }
 
     return render(request, 'weather.html', weather_data)
+
+
+
+class ReactView(APIView):
+    serializer_class = ReactSerializer
+
+    def get(self, request):
+        detail = [{ 'name': detail.name, 'email': detail.email, 'phno': detail.phno } for detail in user.objects.all()]
+        return Response(detail)
+
+    def post(self, request):
+        serializer = ReactSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
